@@ -12,7 +12,7 @@ class MainApp extends StatelessWidget {
     return const MaterialApp(
       title: 'App bar',
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: LoginPage(),
     );
   }
 }
@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'App bar',
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -41,6 +41,7 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.zero, // Removes default padding
             children: [
               const DrawerHeader(
+                padding: EdgeInsets.all(25),
                 decoration: BoxDecoration(
                   color: Color.fromARGB(255, 0, 100, 181),
                 ),
@@ -48,7 +49,7 @@ class HomePage extends StatelessWidget {
                   'Functions',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 24,
+                    fontSize: 30,
                   ),
                 ),
               ),
@@ -62,6 +63,31 @@ class HomePage extends StatelessWidget {
                   );
                 },
               ),
+              const Divider(
+                height: 10,
+                thickness: 1,
+                indent: 10,
+                endIndent: 10,
+                color: Colors.white,
+              ),
+              ListTile(
+                leading: const Icon(Icons.lightbulb, color: Colors.white),
+                title: const Text('Utilities',
+                    style: TextStyle(color: Colors.white)),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Utilities()),
+                  );
+                },
+              ),
+              const Divider(
+                height: 10,
+                thickness: 1,
+                indent: 10,
+                endIndent: 10,
+                color: Colors.white,
+              ),
               ListTile(
                 leading: const Icon(Icons.calendar_today, color: Colors.white),
                 title:
@@ -72,6 +98,13 @@ class HomePage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const EventsPage()),
                   );
                 },
+              ),
+              const Divider(
+                height: 10,
+                thickness: 1,
+                indent: 10,
+                endIndent: 10,
+                color: Colors.white,
               ),
               ListTile(
                 leading: const Icon(Icons.local_dining, color: Colors.white),
@@ -84,12 +117,22 @@ class HomePage extends StatelessWidget {
                   );
                 },
               ),
+              const Divider(
+                height: 10,
+                thickness: 1,
+                indent: 10,
+                endIndent: 10,
+                color: Colors.white,
+              ),
               ListTile(
                 leading: const Icon(Icons.logout, color: Colors.white),
                 title:
                     const Text('Logout', style: TextStyle(color: Colors.white)),
                 onTap: () {
-                  // Handle logout action
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                  );
                 },
               ),
             ],
@@ -125,6 +168,54 @@ class MapPage extends StatelessWidget {
             style: TextStyle(fontSize: 30, color: Colors.white)),
       ),
     );
+  }
+}
+
+class Utilities extends StatelessWidget {
+  const Utilities({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final List<String> utilityNames = [
+      'Salon',
+      'Changepay',
+      'Stationary',
+      'Pharmacy',
+      'General\nStore',
+      'Restaurant'
+    ];
+    final List<Color> uColors = [
+      Colors.grey,
+    ];
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Utilities'),
+          centerTitle: true,
+          backgroundColor: const Color.fromARGB(255, 7, 112, 198),
+        ),
+        backgroundColor: const Color.fromARGB(31, 66, 63, 63),
+        body: GridView.count(
+          crossAxisCount: 2,
+          crossAxisSpacing: 10, // Space between columns
+          mainAxisSpacing: 10, // Space between rows
+          padding: const EdgeInsets.all(10), // Outer padding for the grid
+          children: List.generate(6, (index) {
+            return Container(
+              color: const Color.fromARGB(255, 51, 51,
+                  51), // Set the same background color for all items
+              child: Center(
+                child: Text(
+                  utilityNames[index],
+                  textAlign: TextAlign.center, // Center align text
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            );
+          }),
+        ));
   }
 }
 
@@ -180,5 +271,89 @@ class MenuPage extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width * 0.7;
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Login',
+              style: TextStyle(
+                  color: Color.fromARGB(255, 65, 65, 65), fontSize: 20)),
+          backgroundColor: Colors.blue,
+          centerTitle: true,
+          automaticallyImplyLeading: false,
+        ),
+        backgroundColor: const Color.fromARGB(255, 51, 51, 51),
+        body: Center(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Text(
+              'Login Page',
+              style: TextStyle(color: Colors.white, fontSize: 30),
+            ),
+            SizedBox(
+                height: 20, width: screenWidth), // Add spacing between elements
+            const TextField(
+              decoration: InputDecoration(
+                labelText: 'Username',
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(
+                height: 20, width: screenWidth), // Add spacing between elements
+            const TextField(
+              obscureText: true, // Mask the input for password
+              decoration: InputDecoration(
+                labelText: 'Password',
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 30), // Add some more space
+            ElevatedButton(
+              onPressed: () {
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => const HomePage()),
+                // );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue, // Set the button color
+              ),
+              child: const Text('Login', style: TextStyle(color: Colors.white)),
+            ),
+            const SizedBox(height: 7),
+            const Text('or',
+                style: TextStyle(color: Colors.white, fontSize: 20)),
+            const SizedBox(height: 7),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                );
+              },
+              child: const Text(
+                'Continue without signing in',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    decoration: TextDecoration.underline,
+                    decorationColor: Colors.blueAccent),
+              ),
+            ),
+          ],
+        )));
   }
 }

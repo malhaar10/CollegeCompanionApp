@@ -1,3 +1,3 @@
-# flutter_application_4
+# collegecompanion
 
 A new Flutter project.

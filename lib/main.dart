@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
         drawer: Drawer(
           backgroundColor: const Color.fromARGB(255, 73, 73, 73),
           child: ListView(
-            padding: EdgeInsets.zero, // Removes default padding
+            padding: EdgeInsets.zero,
             children: [
               const DrawerHeader(
                 padding: EdgeInsets.all(25),
@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const MapPage()),
+                    MaterialPageRoute(builder: (context) => MapPage()),
                   );
                 },
               ),
@@ -160,7 +160,7 @@ class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2, // Define the number of tabs
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Menu'),

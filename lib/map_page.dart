@@ -1,7 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'location_data.dart'; // Import the location data library
 
 class MapPage extends StatelessWidget {
   const MapPage({super.key});
+
+  Future<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Check if location services are enabled
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+
+    // Check for location permissions
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied.');
+      }
+    }
+
+    // Get current position
+    return await Geolocator.getCurrentPosition();
+  }
+
+  void _navigateToLocation(BuildContext context, String destination) async {
+    try {
+      Position position = await _determinePosition();
+
+      // Retrieve latitude and longitude from the LocationData library
+      List<double>? coords = LocationData.locations[destination];
+      if (coords == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Location not found')),
+        );
+        return;
+      }
+
+      String url =
+          'https://www.google.com/maps/dir/?api=1&origin=${position.latitude},${position.longitude}&destination=${coords[0]},${coords[1]}&travelmode=driving';
+
+      // Launch the URL
+      await launchUrl(Uri.parse(url));
+    } catch (e) {
+      // Handle any errors that occur during URL launching
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Could not open Google Maps: $e'),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +104,7 @@ class MapPage extends StatelessWidget {
               children: List.generate(utilityNames.length, (index) {
                 return GestureDetector(
                   onTap: () {
-                    // Handle onTap for each utility item
+                    _navigateToLocation(context, utilityNames[index]);
                   },
                   child: Container(
                     color: const Color.fromARGB(255, 51, 51, 51),

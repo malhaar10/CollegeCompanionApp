@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'map_page.dart';
+import 'utilitiespage.dart';
+import 'eventspage.dart';
 
 void main() {
   runApp(const MainApp());
@@ -146,94 +149,6 @@ class HomePage extends StatelessWidget {
             style: TextStyle(fontSize: 22, color: Colors.white),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class MapPage extends StatelessWidget {
-  const MapPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Navigation'),
-        centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 7, 112, 198),
-      ),
-      backgroundColor: const Color.fromARGB(31, 66, 63, 63),
-      body: const Center(
-        child: Text('Place holder.',
-            style: TextStyle(fontSize: 30, color: Colors.white)),
-      ),
-    );
-  }
-}
-
-class Utilities extends StatelessWidget {
-  const Utilities({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final List<String> utilityNames = [
-      'Salon',
-      'Changepay',
-      'Stationary',
-      'Pharmacy',
-      'General\nStore',
-      'Restaurant'
-    ];
-    final List<Color> uColors = [
-      Colors.grey,
-    ];
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Utilities'),
-          centerTitle: true,
-          backgroundColor: const Color.fromARGB(255, 7, 112, 198),
-        ),
-        backgroundColor: const Color.fromARGB(31, 66, 63, 63),
-        body: GridView.count(
-          crossAxisCount: 2,
-          crossAxisSpacing: 10, // Space between columns
-          mainAxisSpacing: 10, // Space between rows
-          padding: const EdgeInsets.all(10), // Outer padding for the grid
-          children: List.generate(6, (index) {
-            return Container(
-              color: const Color.fromARGB(255, 51, 51,
-                  51), // Set the same background color for all items
-              child: Center(
-                child: Text(
-                  utilityNames[index],
-                  textAlign: TextAlign.center, // Center align text
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-            );
-          }),
-        ));
-  }
-}
-
-class EventsPage extends StatelessWidget {
-  const EventsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Events'),
-        centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 7, 112, 198),
-      ),
-      backgroundColor: const Color.fromARGB(31, 66, 63, 63),
-      body: const Center(
-        child: Text('Place holder.',
-            style: TextStyle(fontSize: 30, color: Colors.white)),
       ),
     );
   }

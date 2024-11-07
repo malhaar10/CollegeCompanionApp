@@ -145,8 +145,8 @@ class HomePage extends StatelessWidget {
         body: const Align(
           alignment: Alignment.center,
           child: Text(
-            'Welcome to your College Companion!',
-            style: TextStyle(fontSize: 22, color: Colors.white),
+            'Welcome to the College Companion!\n This app will help you navigate throught the campus and much more!\nAB -> Academic Block\nHB -> Hostel Block',
+            style: TextStyle(fontSize: 18, color: Colors.white),
           ),
         ),
       ),
@@ -168,19 +168,21 @@ class MenuPage extends StatelessWidget {
           backgroundColor: const Color.fromARGB(255, 7, 112, 198),
           bottom: const TabBar(
             tabs: [
-              Tab(text: 'Mess 1'),
-              Tab(text: 'Mess 2'),
+              Tab(text: 'Bluedove'),
+              Tab(text: "Chef's touch"),
             ],
+            labelColor: Colors.black,
+            unselectedLabelColor: Colors.black54,
           ),
         ),
         backgroundColor: const Color.fromARGB(31, 66, 63, 63),
         body: const TabBarView(
           children: [
             Center(
-                child: Text('Mess one.',
+                child: Text('BlueDove menu.',
                     style: TextStyle(color: Colors.white, fontSize: 20))),
             Center(
-                child: Text('Mess two.',
+                child: Text("Chef's Touch menu.",
                     style: TextStyle(color: Colors.white, fontSize: 20))),
           ],
         ),
@@ -214,8 +216,7 @@ class LoginPage extends StatelessWidget {
               'Login Page',
               style: TextStyle(color: Colors.white, fontSize: 30),
             ),
-            SizedBox(
-                height: 20, width: screenWidth), // Add spacing between elements
+            SizedBox(height: 20, width: screenWidth),
             const TextField(
               decoration: InputDecoration(
                 labelText: 'Username',
@@ -224,10 +225,9 @@ class LoginPage extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(
-                height: 20, width: screenWidth), // Add spacing between elements
+            SizedBox(height: 20, width: screenWidth),
             const TextField(
-              obscureText: true, // Mask the input for password
+              obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Password',
                 filled: true,
@@ -235,7 +235,7 @@ class LoginPage extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
-            const SizedBox(height: 30), // Add some more space
+            const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
                 // Navigator.push(
@@ -244,7 +244,7 @@ class LoginPage extends StatelessWidget {
                 // );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue, // Set the button color
+                backgroundColor: Colors.blue,
               ),
               child: const Text('Login', style: TextStyle(color: Colors.white)),
             ),

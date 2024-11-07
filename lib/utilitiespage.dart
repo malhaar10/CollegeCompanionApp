@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'RestaurantPage.dart';
 
 class Utilities extends StatelessWidget {
   const Utilities({super.key});
 
-  // Function to launch the Play Store link for Changepay
   void _launchPlayStore() async {
     final Uri url = Uri.parse(
         'https://play.google.com/store/apps/details?id=in.changepay.customerAndroidApp');
@@ -21,7 +21,7 @@ class Utilities extends StatelessWidget {
       'Salon',
       'Changepay',
       'Stationary',
-      'Pharmacy',
+      'Pharmacy\n(Coming Soon)',
       'General\nStore',
       'Restaurant'
     ];
@@ -39,23 +39,34 @@ class Utilities extends StatelessWidget {
         mainAxisSpacing: 10,
         padding: const EdgeInsets.all(10),
         children: List.generate(utilityNames.length, (index) {
-          return GestureDetector(
-            onTap: () {
-              // Check if the tapped item is "Changepay"
+          return ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor:
+                  const Color.fromARGB(255, 51, 51, 51), // Set background color
+              padding: const EdgeInsets.all(20), // Optional padding
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                    30), // Set the radius for rounded edges
+              ),
+            ),
+            onPressed: () {
               if (utilityNames[index] == 'Changepay') {
                 _launchPlayStore();
+              } else if (utilityNames[index] == 'Restaurant') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const RestaurantPage()),
+                );
               }
             },
-            child: Container(
-              color: const Color.fromARGB(255, 51, 51, 51),
-              child: Center(
-                child: Text(
-                  utilityNames[index],
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
+            child: Center(
+              child: Text(
+                utilityNames[index],
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
                 ),
               ),
             ),

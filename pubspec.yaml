@@ -18,6 +18,16 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  photo_view: ^0.15.0 
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/campusmart.jpg
+    - assets/images/menu1.jpg
+    - assets/images/menu2.jpg
+    - assets/images/menu3.jpg
+    - assets/images/menu4.jpg
+    - assets/images/salon.jpg
+    - assets/images/stationary.jpg
+    - assets/images/bmenu.jpg

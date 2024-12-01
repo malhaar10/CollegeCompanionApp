@@ -68,7 +68,10 @@ class MapPage extends StatelessWidget {
       'T A Pai Convention Center',
       'Gate 1',
       'Gate 2\n(Unavailable)',
-      'Gate 3'
+      'Gate 3',
+      'Admin Block\n(Unavailable)',
+      'MLP\n(Unavailable)',
+      'AB 6\n(Unavailable)'
     ];
 
     return Scaffold(
